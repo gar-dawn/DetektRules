@@ -1,11 +1,11 @@
 # Biocoin Android Coding Style
 
-The Biocoin Android Coding Style is based on the [official Android Kotlin Style Guide](https://developer.android.com/kotlin/style-guide).  
-Please read the official Android Kotlin Style guide carefully first. It contains a lot of information about how the source files should be named and formatted.
+The Biocoin Android Coding Style is based on the [official Android Kotlin Style Guide](https://developer.android.com/kotlin/style-guide), 
+and [Kotlin Language Coding Conventions](https://kotlinlang.org/docs/coding-conventions.html).
+Please read the official Style and Convention Guides from Android & Kotlin carefully first. 
 
-We will use [Detekt, a static code analyzer for Kotlin](https://detekt.dev/) for enforcing the Biocoin Android Coding Style
-
-
+We will use [Detekt, a static code analyzer for Kotlin](https://detekt.dev/) for enforcing the Biocoin Android Coding Style, 
+with [Ktlint, a Kotlin linter with built in formatter](https://ktlint.github.io/) integration.
 
 
 # Classes
