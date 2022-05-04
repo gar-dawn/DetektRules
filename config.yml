@@ -39,7 +39,7 @@ output-reports:
    - 'SarifOutputReport'
 
 comments:
-  active: true
+  active: false
 #  AbsentOrWrongFileLicense:
 #    active: false
 #    licenseTemplateFile: 'license.template'
@@ -48,35 +48,37 @@ comments:
 #    active: false
 #  CommentOverPrivateProperty:
 #    active: false
-#  DeprecatedBlockTag:
-#    active: false
-#  EndOfSentenceFormat:
-#    active: false
-#    endOfSentenceFormat: '([.?!][ \t\n\r\f<])|([.?!:]$)'
-#  OutdatedDocumentation:
-#    active: false
-#    matchTypeParameters: true
-#    matchDeclarationsOrder: true
-#    allowParamOnConstructorProperties: false
-#  UndocumentedPublicClass:
-#    active: false
-#    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
-#    searchInNestedClass: true
-#    searchInInnerClass: true
-#    searchInInnerObject: true
-#    searchInInnerInterface: true
-#  UndocumentedPublicFunction:
-#    active: false
-#    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+  DeprecatedBlockTag:
+    active: true
+  EndOfSentenceFormat:
+    active: false
+    endOfSentenceFormat: '([.?!][ \t\n\r\f<])|([.?!:]$)'
+  OutdatedDocumentation:
+    active: false
+    matchTypeParameters: true
+    matchDeclarationsOrder: true
+    allowParamOnConstructorProperties: false
+  UndocumentedPublicClass:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    searchInNestedClass: true
+    searchInInnerClass: true
+    searchInInnerObject: true
+    searchInInnerInterface: true
+  UndocumentedPublicFunction:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+#TODO We are writing regulatory software, how documented does that have to be? do methods explain class purpose well enough?
 #  UndocumentedPublicProperty:
 #    active: false
 #    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
 #
-#complexity:
-#  active: true
-#  ComplexCondition:
-#    active: true
-#    threshold: 4
+complexity:
+  active: false
+# TODO use when control flow
+  ComplexCondition:
+    active: true
+    threshold: 4
 #  ComplexInterface:
 #    active: false
 #    threshold: 10
@@ -101,9 +103,11 @@ comments:
 #  LabeledExpression:
 #    active: false
 #    ignoredLabels: []
+# TODO not indicative of single responsibility, could be multi-line params/method call-sites
 #  LargeClass:
 #    active: true
 #    threshold: 600
+# TODO not indicative of single responsibility, could be multi-line params/method call-sites
 #  LongMethod:
 #    active: true
 #    threshold: 60
@@ -115,24 +119,24 @@ comments:
 #    ignoreDataClasses: true
 #    ignoreAnnotatedParameter: []
 #  MethodOverloading:
-#    active: false
+#    active: true
 #    threshold: 6
 #  NamedArguments:
 #    active: false
 #    threshold: 3
 #    ignoreArgumentsMatchingNames: false
-#  NestedBlockDepth:
-#    active: true
-#    threshold: 4
+  NestedBlockDepth:
+    active: true
+    threshold: 4
 #  ReplaceSafeCallChainWithRun:
 #    active: false
-#  StringLiteralDuplication:
-#    active: false
-#    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
-#    threshold: 3
-#    ignoreAnnotation: true
-#    excludeStringsWithLessThan5Characters: true
-#    ignoreStringsRegex: '$^'
+  StringLiteralDuplication:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+    threshold: 3
+    ignoreAnnotation: true
+    excludeStringsWithLessThan5Characters: false
+    ignoreStringsRegex: '$^'
 #  TooManyFunctions:
 #    active: true
 #    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
@@ -145,93 +149,93 @@ comments:
 #    ignorePrivate: false
 #    ignoreOverridden: false
 #
-#coroutines:
-#  active: true
-#  GlobalCoroutineUsage:
-#    active: false
-#  InjectDispatcher:
-#    active: false
-#    dispatcherNames:
-#      - 'IO'
-#      - 'Default'
-#      - 'Unconfined'
-#  RedundantSuspendModifier:
-#    active: false
-#  SleepInsteadOfDelay:
-#    active: false
-#  SuspendFunWithCoroutineScopeReceiver:
-#    active: false
-#  SuspendFunWithFlowReturnType:
-#    active: false
+coroutines:
+  active: false
+  GlobalCoroutineUsage:
+    active: true
+  InjectDispatcher:
+    active: false
+    dispatcherNames:
+      - 'IO'
+      - 'Default'
+      - 'Unconfined'
+  RedundantSuspendModifier:
+    active: false
+  SleepInsteadOfDelay:
+    active: true
+  SuspendFunWithCoroutineScopeReceiver:
+    active: true
+  SuspendFunWithFlowReturnType:
+    active: true
 #
-#empty-blocks:
-#  active: true
-#  EmptyCatchBlock:
-#    active: true
-#    allowedExceptionNameRegex: '_|(ignore|expected).*'
-#  EmptyClassBlock:
-#    active: true
+empty-blocks:
+  active: false
+  EmptyCatchBlock:
+    active: true
+    allowedExceptionNameRegex: ''
+  EmptyClassBlock:
+    active: true
 #  EmptyDefaultConstructor:
 #    active: true
-#  EmptyDoWhileBlock:
-#    active: true
-#  EmptyElseBlock:
-#    active: true
-#  EmptyFinallyBlock:
-#    active: true
-#  EmptyForBlock:
-#    active: true
-#  EmptyFunctionBlock:
-#    active: true
-#    ignoreOverridden: false
-#  EmptyIfBlock:
-#    active: true
-#  EmptyInitBlock:
-#    active: true
-#  EmptyKtFile:
-#    active: true
-#  EmptySecondaryConstructor:
-#    active: true
-#  EmptyTryBlock:
-#    active: true
-#  EmptyWhenBlock:
-#    active: true
-#  EmptyWhileBlock:
-#    active: true
+  EmptyDoWhileBlock:
+    active: true
+  EmptyElseBlock:
+    active: false
+  EmptyFinallyBlock:
+    active: true
+  EmptyForBlock:
+    active: true
+  EmptyFunctionBlock:
+    active: true
+    ignoreOverridden: true
+  EmptyIfBlock:
+    active: true
+  EmptyInitBlock:
+    active: true
+  EmptyKtFile:
+    active: true
+  EmptySecondaryConstructor:
+    active: true
+  EmptyTryBlock:
+    active: true
+  EmptyWhenBlock:
+    active: true
+  EmptyWhileBlock:
+    active: true
 #
-#exceptions:
-#  active: true
-#  ExceptionRaisedInUnexpectedLocation:
-#    active: true
-#    methodNames:
-#      - 'equals'
-#      - 'finalize'
-#      - 'hashCode'
-#      - 'toString'
+exceptions:
+  active: false
+  ExceptionRaisedInUnexpectedLocation:
+    active: true
+    methodNames:
+      - 'equals'
+      - 'finalize'
+      - 'hashCode'
+      - 'toString'
 #  InstanceOfCheckForException:
 #    active: false
 #    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
-#  NotImplementedDeclaration:
-#    active: false
-#  ObjectExtendsThrowable:
-#    active: false
+  NotImplementedDeclaration:
+    active: false
+  ObjectExtendsThrowable:
+    active: true
 #  PrintStackTrace:
 #    active: true
-#  RethrowCaughtException:
-#    active: true
-#  ReturnFromFinally:
-#    active: true
-#    ignoreLabeled: false
-#  SwallowedException:
-#    active: true
+  RethrowCaughtException:
+    active: true
+  ReturnFromFinally:
+    active: true
+    ignoreLabeled: false
+  SwallowedException:
+    active: true
 #    ignoredExceptionTypes:
 #      - 'InterruptedException'
 #      - 'MalformedURLException'
 #      - 'NumberFormatException'
 #      - 'ParseException'
-#    allowedExceptionNameRegex: '_|(ignore|expected).*'
-#  ThrowingExceptionFromFinally:
-#    active: true
+    allowedExceptionNameRegex: ''
+  ThrowingExceptionFromFinally:
+    active: true
 #  ThrowingExceptionInMain:
 #    active: false
 #  ThrowingExceptionsWithoutMessageOrCause:
@@ -247,8 +251,8 @@ comments:
 #      - 'NullPointerException'
 #      - 'RuntimeException'
 #      - 'Throwable'
-#  ThrowingNewInstanceOfSameException:
-#    active: true
+  ThrowingNewInstanceOfSameException:
+    active: true
 #  TooGenericExceptionCaught:
 #    active: true
 #    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
@@ -262,32 +266,32 @@ comments:
 #      - 'RuntimeException'
 #      - 'Throwable'
 #    allowedExceptionNameRegex: '_|(ignore|expected).*'
-#  TooGenericExceptionThrown:
-#    active: true
-#    exceptionNames:
-#      - 'Error'
-#      - 'Exception'
-#      - 'RuntimeException'
-#      - 'Throwable'
+  TooGenericExceptionThrown:
+    active: true
+    exceptionNames:
+      - 'Error'
+      - 'Exception'
+      - 'RuntimeException'
+      - 'Throwable'
 #
-#naming:
-#  active: true
+naming:
+  active: false
 #  BooleanPropertyNaming:
 #    active: false
 #    allowedPattern: '^(is|has|are)'
 #    ignoreOverridden: true
-#  ClassNaming:
-#    active: true
-#    classPattern: '[A-Z][a-zA-Z0-9]*'
+  ClassNaming:
+    active: true
+    classPattern: '[A-Z][a-zA-Z]*'
 #  ConstructorParameterNaming:
 #    active: true
 #    parameterPattern: '[a-z][A-Za-z0-9]*'
 #    privateParameterPattern: '[a-z][A-Za-z0-9]*'
 #    excludeClassPattern: '$^'
 #    ignoreOverridden: true
-#  EnumNaming:
-#    active: true
-#    enumEntryPattern: '[A-Z][_a-zA-Z0-9]*'
+  EnumNaming:
+    active: true
+    enumEntryPattern: '[A-Z][_a-zA-Z0-9]*'
 #  ForbiddenClassName:
 #    active: false
 #    forbiddenName: []
@@ -330,9 +334,9 @@ comments:
 #    constantPattern: '[A-Za-z][_A-Za-z0-9]*'
 #    propertyPattern: '[A-Za-z][_A-Za-z0-9]*'
 #    privatePropertyPattern: '(_)?[A-Za-z][_A-Za-z0-9]*'
-#  PackageNaming:
-#    active: true
-#    packagePattern: '[a-z]+(\.[a-z][A-Za-z0-9]*)*'
+  PackageNaming:
+    active: true
+    packagePattern: '[a-z]+(\.[a-z][A-Za-z]*)*'
 #  TopLevelPropertyNaming:
 #    active: true
 #    constantPattern: '[A-Z][_A-Z0-9]*'
@@ -351,54 +355,54 @@ comments:
 #    excludeClassPattern: '$^'
 #    ignoreOverridden: true
 #
-#performance:
-#  active: true
-#  ArrayPrimitive:
-#    active: true
-#  ForEachOnRange:
-#    active: true
-#    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
-#  SpreadOperator:
-#    active: true
-#    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
-#  UnnecessaryTemporaryInstantiation:
-#    active: true
+performance:
+  active: false
+  ArrayPrimitive:
+    active: true
+  ForEachOnRange:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+  SpreadOperator:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+  UnnecessaryTemporaryInstantiation:
+    active: true
 #
-#potential-bugs:
-#  active: true
+potential-bugs:
+  active: false
 #  AvoidReferentialEquality:
 #    active: false
 #    forbiddenTypePatterns:
 #      - 'kotlin.String'
-#  CastToNullableType:
-#    active: false
+  CastToNullableType:
+    active: true
 #  Deprecation:
 #    active: false
-#  DontDowncastCollectionTypes:
-#    active: false
-#  DoubleMutabilityForCollection:
-#    active: false
-#    mutableTypes:
-#      - 'kotlin.collections.MutableList'
-#      - 'kotlin.collections.MutableMap'
-#      - 'kotlin.collections.MutableSet'
-#      - 'java.util.ArrayList'
-#      - 'java.util.LinkedHashSet'
-#      - 'java.util.HashSet'
-#      - 'java.util.LinkedHashMap'
-#      - 'java.util.HashMap'
-#  DuplicateCaseInWhenExpression:
-#    active: true
+  DontDowncastCollectionTypes:
+    active: true
+  DoubleMutabilityForCollection:
+    active: true
+    mutableTypes:
+      - 'kotlin.collections.MutableList'
+      - 'kotlin.collections.MutableMap'
+      - 'kotlin.collections.MutableSet'
+      - 'java.util.ArrayList'
+      - 'java.util.LinkedHashSet'
+      - 'java.util.HashSet'
+      - 'java.util.LinkedHashMap'
+      - 'java.util.HashMap'
+  DuplicateCaseInWhenExpression:
+    active: true
 #  ElseCaseInsteadOfExhaustiveWhen:
 #    active: false
-#  EqualsAlwaysReturnsTrueOrFalse:
-#    active: true
-#  EqualsWithHashCodeExist:
-#    active: true
-#  ExitOutsideMain:
-#    active: false
-#  ExplicitGarbageCollectionCall:
-#    active: true
+  EqualsAlwaysReturnsTrueOrFalse:
+    active: true
+  EqualsWithHashCodeExist:
+    active: true
+  ExitOutsideMain:
+    active: true
+  ExplicitGarbageCollectionCall:
+    active: true
 #  HasPlatformType:
 #    active: false
 #  IgnoredReturnValue:
@@ -425,44 +429,44 @@ comments:
 #    active: false
 #    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
 #    ignoreOnClassesPattern: ''
-#  MapGetWithNotNullAssertionOperator:
-#    active: false
+  MapGetWithNotNullAssertionOperator:
+    active: true
 #  MissingPackageDeclaration:
-#    active: false
-#    excludes: ['**/*.kts']
-#  MissingWhenCase:
 #    active: true
-#    allowElseExpression: true
+#    excludes: ['**/*.kts']
+  MissingWhenCase:
+    active: true
+    allowElseExpression: true
 #  NullCheckOnMutableProperty:
 #    active: false
 #  NullableToStringCall:
 #    active: false
-#  RedundantElseInWhen:
-#    active: true
-#  UnconditionalJumpStatementInLoop:
-#    active: false
-#  UnnecessaryNotNullOperator:
-#    active: true
+  RedundantElseInWhen:
+    active: true
+  UnconditionalJumpStatementInLoop:
+    active: true
+  UnnecessaryNotNullOperator:
+    active: true
 #  UnnecessarySafeCall:
 #    active: true
-#  UnreachableCatchBlock:
-#    active: false
-#  UnreachableCode:
-#    active: true
-#  UnsafeCallOnNullableType:
-#    active: true
-#    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
-#  UnsafeCast:
-#    active: true
-#  UnusedUnaryOperator:
-#    active: false
+  UnreachableCatchBlock:
+    active: true
+  UnreachableCode:
+    active: true
+  UnsafeCallOnNullableType:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**']
+  UnsafeCast:
+    active: true
+  UnusedUnaryOperator:
+    active: true
 #  UselessPostfixExpression:
 #    active: false
 #  WrongEqualsTypeParameter:
 #    active: true
 #
-#style:
-#  active: true
+style:
+  active: true
 #  CanBeNonNullable:
 #    active: false
 #  ClassOrdering:
@@ -472,15 +476,15 @@ comments:
 #  DataClassContainsFunctions:
 #    active: false
 #    conversionFunctionPrefix: 'to'
-#  DataClassShouldBeImmutable:
-#    active: false
+  DataClassShouldBeImmutable:
+    active: true
 #  DestructuringDeclarationWithTooManyEntries:
 #    active: false
 #    maxDestructuringEntries: 3
 #  EqualsNullCall:
 #    active: true
-#  EqualsOnSignatureLine:
-#    active: false
+  EqualsOnSignatureLine:
+    active: true
 #  ExplicitCollectionElementAccessMethod:
 #    active: false
 #  ExplicitItLambdaParameter:
@@ -496,25 +500,26 @@ comments:
 #      - 'TODO:'
 #    allowedPatterns: ''
 #    customMessage: ''
-#  ForbiddenImport:
-#    active: false
-#    imports: []
-#    forbiddenPatterns: ''
-#  ForbiddenMethodCall:
-#    active: false
-#    methods:
-#      - 'kotlin.io.print'
-#      - 'kotlin.io.println'
+# TODO SecOps - how to prevent execution of specific classes in known vulnerable classes slf4j?
+  ForbiddenImport:
+    active: true
+    imports: []
+    forbiddenPatterns: ''
+  ForbiddenMethodCall:
+    active: true
+    methods:
+      - 'kotlin.io.print'
+      - 'kotlin.io.println'
 #  ForbiddenPublicDataClass:
 #    active: true
 #    excludes: ['**']
 #    ignorePackages:
 #      - '*.internal'
 #      - '*.internal.*'
-#  ForbiddenVoid:
-#    active: false
-#    ignoreOverridden: false
-#    ignoreUsageInGenerics: false
+  ForbiddenVoid:
+    active: true
+    ignoreOverridden: true
+    ignoreUsageInGenerics: false
 #  FunctionOnlyReturningConstant:
 #    active: true
 #    ignoreOverridableFunction: true
@@ -549,8 +554,8 @@ comments:
 #    ignoreExtensionFunctions: true
 #  MandatoryBracesIfStatements:
 #    active: false
-#  MandatoryBracesLoops:
-#    active: false
+  MandatoryBracesLoops:
+    active: true
 #  MaxLineLength:
 #    active: true
 #    maxLineLength: 120
@@ -559,14 +564,14 @@ comments:
 #    excludeCommentStatements: false
 #  MayBeConst:
 #    active: true
-#  ModifierOrder:
-#    active: true
+  ModifierOrder:
+    active: true
 #  MultilineLambdaItParameter:
 #    active: false
-#  NestedClassesVisibility:
-#    active: true
-#  NewLineAtEndOfFile:
-#    active: true
+  NestedClassesVisibility:
+    active: true
+  NewLineAtEndOfFile:
+    active: true
 #  NoTabs:
 #    active: false
 #  ObjectLiteralToLambda:
@@ -579,8 +584,8 @@ comments:
 #    active: false
 #  PreferToOverPairSyntax:
 #    active: false
-#  ProtectedMemberInFinalClass:
-#    active: true
+  ProtectedMemberInFinalClass:
+    active: true
 #  RedundantExplicitType:
 #    active: false
 #  RedundantHigherOrderMapUsage:
@@ -606,10 +611,10 @@ comments:
 #    excludeGuardClauses: false
 #  TrailingWhitespace:
 #    active: false
-#  UnderscoresInNumericLiterals:
-#    active: false
-#    acceptableLength: 4
-#    allowNonStandardGrouping: false
+  UnderscoresInNumericLiterals:
+    active: true
+    acceptableLength: 5
+    allowNonStandardGrouping: false
 #  UnnecessaryAbstractClass:
 #    active: true
 #  UnnecessaryAnnotationUseSiteTarget:
@@ -621,8 +626,8 @@ comments:
 ##    active: false
 #  UnnecessaryFilter:
 #    active: false
-#  UnnecessaryInheritance:
-#    active: true
+  UnnecessaryInheritance:
+    active: true
 #  UnnecessaryInnerClass:
 #    active: false
 #  UnnecessaryLet:
@@ -631,8 +636,8 @@ comments:
 #    active: false
 #  UntilInsteadOfRangeTo:
 #    active: false
-#  UnusedImports:
-#    active: false
+  UnusedImports:
+    active: true
 #  UnusedPrivateClass:
 #    active: true
 #  UnusedPrivateMember:
@@ -642,10 +647,10 @@ comments:
 #    active: false
 #  UseArrayLiteralsInAnnotations:
 #    active: false
-#  UseCheckNotNull:
-#    active: false
-#  UseCheckOrError:
-#    active: false
+  UseCheckNotNull:
+    active: true
+  UseCheckOrError:
+    active: true
 #  UseDataClass:
 #    active: false
 #    allowVars: false
@@ -655,18 +660,18 @@ comments:
 #    active: false
 #  UseIfInsteadOfWhen:
 #    active: false
-#  UseIsNullOrEmpty:
-#    active: false
+  UseIsNullOrEmpty:
+    active: true
 #  UseOrEmpty:
 #    active: false
-#  UseRequire:
-#    active: false
-#  UseRequireNotNull:
-#    active: false
-#  UselessCallOnNotNull:
-#    active: true
-#  UtilityClassWithPublicConstructor:
-#    active: true
+  UseRequire:
+    active: true
+  UseRequireNotNull:
+    active: true
+  UselessCallOnNotNull:
+    active: true
+  UtilityClassWithPublicConstructor:
+    active: true
 #  VarCouldBeVal:
 #    active: true
 ## Property 'style>VarCouldBeVal>ignoreLateinitVar' is misspelled or does not exist.
