@@ -4,19 +4,14 @@ The Biocoin Android Coding Style is based on the [official Android Kotlin Style 
 and [Kotlin Language Coding Conventions](https://kotlinlang.org/docs/coding-conventions.html).
 Please read the official Style and Convention Guides from Android & Kotlin carefully first. 
 
-We will use [Detekt, a static code analyzer for Kotlin](https://detekt.dev/) for enforcing the Biocoin Android Coding Style, 
-with [Ktlint, a Kotlin linter with built in formatter](https://ktlint.github.io/) integration.
+We will use [Ktlint, a Kotlin linter with built in formatter](https://ktlint.github.io/) for enforcing the Biocoin Android Coding Style.
 
 
 # Classes
 
-### Imports
-
-Do not use star imports. 
-
 ### Constructors
 
-Initialize the properties of a class via primary constructor parameters instead of using an init block.
+Initialize the properties of a class via primary constructor parameters instead of using an `init` block.
 
 #### Do:
 
@@ -69,7 +64,7 @@ Follow the coding conventions:
 >```kotlin
 >list.filter { it > 10 }.map { element -> element * 2 }
 >```
->In lambdas which are short and not nested, it's recommended to use the it convention instead of declaring the parameter explicitly. In nested lambdas with parameters, parameters should be always declared explicitly.
+>In lambdas which are short and not nested, it's recommended to use the `it` convention instead of declaring the parameter explicitly. In nested lambdas with parameters, parameters should be always declared explicitly.
 
 To add to this, lambda parameters (or those in destructured declarations) which are unused should be replaced with an underscore, unless leaving the parameter significantly improves readability. Android Studio will nag you about this anyway:
 
@@ -80,7 +75,7 @@ To add to this, lambda parameters (or those in destructured declarations) which 
 ```
 
 ### Lambda Returns
-Adding a `return` to a Lambda in Kotlin is optional, and multiline Lambdas will just return the last line. In complex multi-line Lambdas, strongly consider adding a `return@map/flatmap/whatever` statement for the sake of clarity, as the return may not be particularly obvious at first glance.
+Adding a `return` to a Lambda in Kotlin is optional, and multiline Lambdas will just return the last line. In complex multi-line Lambdas, strongly consider adding a `return@map/flatMap/whatever` statement for the sake of clarity, as the return may not be particularly obvious at first glance.
 
 ### Companion Objects
 Companion objects, such as those for `Fragment` `newInstance` methods, should be defined at the bottom of a class declaration;
@@ -108,7 +103,7 @@ class MyFragment : Fragment() {
     }
 }
 ```
-As a sidenote regarding `val` properties in companion objects; accessing them from Java requires accessing the companion object too, which is ugly and not idiomatic:
+As a sidenote regarding `val` properties in `companion objects`; accessing them from Java requires accessing the companion object too, which is ugly and not idiomatic:
 
 ```java
 String key = MyFragment.Companion.BUNDLE_VALUE_ONE;
@@ -149,7 +144,7 @@ fun foo() {
 
 Functions whose bodies are single line should be converted to expression bodies where possible, unless that function returns `Unit`. One exception is passthrough methods, where the caller function is delegating to another class' method. 
 
-Whilst expression bodies allow the omission of the return type, strongly consider keeping it for the sake of readability unless the function quite obviously returns a primitive type such as a `Boolean` or `String`. Whilst it's trivial to work out the return type using an IDE, omitting these types make code review painful and more error prone.
+Whilst expression bodies allow the omission of the return type, strongly consider keeping it for the sake of readability unless the function quite obviously returns a primitive type such as a `Boolean` or `String`. Whilst it's trivial to work out the return type using an IDE, omitting these types makes code review painful and more error prone.
 
 ### Functions vs Properties
 
@@ -258,12 +253,12 @@ when (aValue) {
 
 *Common*
 
-All resources names after prefixes described above should also contain feature name.
+All resource names after prefixes described above should also contain feature name.
 
 Examples:
 
-- `activity_restaurants_map.xml`
-- `layout_restaurant_header.xml`
+- `activity_` + `restaurants_map.xml`
+- `layout_` + `restaurant_header.xml`
 
 ```
 <string name="restaurant_header_title">Restaurant</string>
@@ -272,7 +267,7 @@ Examples:
 
 
 ### Structure
-XML tags should be ordered as follows: 'xmlns' first, then id, then layout_width and layout_height then alphabetically. 
+XML tags should be ordered as follows: 'xmlns' first, then id, then `layout_width` and `layout_height` then alphabetically. 
 
 Add a space between the closing slash and the final attribute. E.g. ```android:textSize="10dp" />```
 
